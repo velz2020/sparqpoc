@@ -1,0 +1,8 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+etc/
+.project
+.settings
+.classpath
+.fbExcludeFilterFile
+.travis.yml

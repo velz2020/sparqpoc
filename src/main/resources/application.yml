@@ -1,0 +1,40 @@
+# config context path to "/" by setting an empty string
+server:
+  contextPath: 
+
+# JACKSON
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+# MYSQL CONNECTION PROPERTIES
+  jpa:
+    hibernate:
+      # possible values: validate | update | create | create-drop
+      ddl-auto: update
+      show-sql: true
+  datasource:
+    url: jdbc:mysql://www.venbainfotech.com/kasirama_sparq
+    username: kasirama_sparq
+    password: venba@1234
+    driver-class-name: com.mysql.jdbc.Driver	
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+logging:
+  file: app.log
+  pattern: 
+   console: "%d %-5level %logger : %msg%n"
+   file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework:
+      security: DEBUG
+      web: ERROR
+      com.sparqpoc: DEBUG
+    org.hibernate: ERROR	
