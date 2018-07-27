@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
@@ -86,4 +87,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // disable page caching
         httpSecurity.headers().cacheControl();
     }
+    
+    
+	public void addCorsMappings(CorsRegistry registry) {
+ 
+		registry.addMapping("/**")
+				.allowedOrigins("http://localhost:8100", "*")
+				.allowedMethods("POST", "GET", "PUT", "DELETE")
+				.allowedHeaders("Content-Type")
+				.exposedHeaders("header-1", "header-2")
+				.allowCredentials(false)
+				.maxAge(6000);
+ 
+	}
 }
