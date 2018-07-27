@@ -128,7 +128,7 @@
 			                <goal>repackage</goal>
 			            </goals>
 			            <configuration>
-			                <classifier>spring-boot</classifier>
+			                <!-- <classifier>spring-boot</classifier> -->
 			                <mainClass>
 			                  org.sparqpoc.SparqPOCApplication
 			                </mainClass>
