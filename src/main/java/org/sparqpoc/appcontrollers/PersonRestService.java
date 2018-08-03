@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-//@CrossOrigin()
+//@CrossOrigin(origins = {"http://localhost:8100","http://localhost:1990"})
 public class PersonRestService {
 	
 	@Autowired
@@ -194,6 +194,14 @@ public class PersonRestService {
     {
     	
     	return "Hi Welcome to SPARQ POC Demo App";
+    
+    }
+    
+    @RequestMapping(path = "common/getwelcomemsgpost", method = RequestMethod.POST)
+    public String getWelcomeMsgPost()
+    {
+    	
+    	return "Hi Welcome to SPARQ POC Demo App by POST Method";
     
     }
     

@@ -33,14 +33,34 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         String authToken = request.getHeader(this.tokenHeader);
+        String method = request.getMethod();
+        String tempToken = request.getHeader(this.tokenHeader);
         // authToken.startsWith("Bearer ")
         // String authToken = header.substring(7);
         
         System.out.println("***JwtAuthenticationTokenFilter - doFilterInternal Called***");
+        System.out.println("***JwtAuthenticationTokenFilter - current Method"+method);
         String username = jwtTokenUtil.getUsernameFromToken(authToken);
+        if(tempToken != null)
+        {
+        	 logger.info("IF tempToken print" + tempToken);
+        }
+        else{ 
+        	
+        	logger.info("ELSE tempToken print" + tempToken); 
+        }
 
-        logger.info("checking authentication für user " + username);
-
+        logger.info("checking authentication for user " + username);
+        logger.info("checking authentication for method " + method);
+        
+//        if ("OPTIONS".equalsIgnoreCase(method)) {
+//        	response.setHeader("Access-Control-Allow-Origin", "*");
+//	        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+//	        response.setHeader("Access-Control-Max-Age", "3600");
+//	        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization");
+//         	response.setStatus(HttpServletResponse.SC_OK);
+//     }else{
+        
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             // It is not compelling necessary to load the use details from the database. You could also store the information
@@ -56,7 +76,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
+        
 
-        chain.doFilter(request, response);
+     // }
+    chain.doFilter(request, response);
+       
     }
 }

@@ -48,6 +48,7 @@ public class JwtTokenUtil implements Serializable {
         } catch (Exception e) {
             username = null;
         }
+        System.out.println("***JwtTokenUtil getUsernameFromToken Called***"+username);
         return username;
     }
 
@@ -115,7 +116,7 @@ public class JwtTokenUtil implements Serializable {
     private String generateAudience(Device device) {
         String audience = AUDIENCE_UNKNOWN;
         if (device.isNormal()) {
-            audience = AUDIENCE_WEB;
+            audience = "CUSTOM AUDIENCE";
         } else if (device.isTablet()) {
             audience = AUDIENCE_TABLET;
         } else if (device.isMobile()) {
